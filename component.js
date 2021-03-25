@@ -1,4 +1,4 @@
-var reactDocs = require('react-docgen')
+// var reactDocs = require('react-docgen')
 var vueDocs = require('vue-docgen-api')
 var fs = require('fs')
 var path = require('path')
@@ -16,16 +16,18 @@ exports.handlers = {
     var filePath = path.join(doclet.meta.path, doclet.meta.filename)
     const componentTag = (doclet.tags || []).find(tag => tag.title === 'component')
     if (componentTag) {
-      if (path.extname(filePath) === '.vue') {
+      // if (path.extname(filePath) === '.vue') {
         doclet.component = parseVue(filePath, doclet)
         doclet.component.type = 'vue'
+      /*
       } else {
         doclet.component = parseReact(filePath, doclet)
         doclet.component.type = 'react'
       }
+      */
       doclet.kind = 'class'
     } else {
-      if (path.extname(filePath) === '.vue') {
+      // if (path.extname(filePath) === '.vue') {
         const docGen = vueDocs.parse(filePath)
         const name = docGen.displayName
         if (doclet.kind === 'function' || doclet.kind === 'event') {
@@ -33,7 +35,7 @@ exports.handlers = {
         } else {
           doclet.undocumented = true
         }
-      }
+      //}
 
       if (path.extname(filePath) === '.jsx') {
         if (doclet.kind !== 'function' && doclet.kind !== 'event') {
@@ -43,7 +45,7 @@ exports.handlers = {
     }
   }
 }
-
+/*
 var parseReact = function (filePath, doclet) {
   if (path.extname(filePath) === '.tsx') {
     return {
@@ -82,7 +84,7 @@ var parseReact = function (filePath, doclet) {
     filePath: filePath,
   }
 }
-
+*/
 var parseVue = function (filePath, doclet) {
   const docGen = vueDocs.parse(filePath)
   doclet.name = doclet.longname = docGen.displayName
@@ -106,4 +108,4 @@ var parseVue = function (filePath, doclet) {
 }
 
 exports.parseVue = parseVue
-exports.parseReact = parseReact
+// exports.parseReact = parseReact
