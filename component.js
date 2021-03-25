@@ -7,7 +7,7 @@ exports.handlers = {
   beforeParse: function(e) {
     if (path.extname(e.filename) === '.vue') {
       e.componentInfo = vueDocs.parse(e.filename)
-      var script = e.source.match(new RegExp('<script>(.*?)</script>', 's')) || e.source.match(new RegExp('<script lang="ts">(.*?)</script>', 's')) || e.source.match(new RegExp('<script lang=\'ts\'>(.*?)</script>', 's'))
+      var script = e.source.match(new RegExp('<script>(.*?)</script>', 's')) || e.source.match(new RegExp('<script lang="ts">(.*?)</script>', 's'))
       e.source = script[1]
     }
   },
