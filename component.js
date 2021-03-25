@@ -26,7 +26,7 @@ exports.handlers = {
       }
       */
       doclet.kind = 'class'
-    } else {
+    } /* else {
       // if (path.extname(filePath) === '.vue') {
         const docGen = vueDocs.parse(filePath)
         const name = docGen.displayName
@@ -42,7 +42,7 @@ exports.handlers = {
           doclet.undocumented = true
         }
       }
-    }
+    } */
   }
 }
 /*
